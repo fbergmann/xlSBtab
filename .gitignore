@@ -2,3 +2,5 @@
 /xlSBtab/obj/Debug
 /xlSBtab/obj/Release
 /xlSBtab/bin/Release
+
+*.suo

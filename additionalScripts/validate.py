@@ -16,7 +16,7 @@ try:
   validate = validatorSBtab.ValidateTable(document,sys.argv[1],definitions,'./definitions.csv')
   result = validate.returnOutput()
 except Exception, e: 
-  messages.append(e)
+  messages.append(str(e))
   numErrors = numErrors + 1
 
 for tag in result: 

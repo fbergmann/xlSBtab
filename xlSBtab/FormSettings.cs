@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ExcelAddIn1
+namespace xlSBtab
 {
   public partial class FormSettings : Form
   {
@@ -33,7 +26,7 @@ namespace ExcelAddIn1
 
     private void OnBrowseSBtabDirClick(object sender, EventArgs e)
     {
-      using (var dlg = new FolderBrowserDialog { Description = "Select SBTab dir", SelectedPath = txtPython.Text})
+      using (var dlg = new FolderBrowserDialog { Description = "Select SBtab script dir", SelectedPath = txtPython.Text})
       {
         if (dlg.ShowDialog() == DialogResult.OK)
           txtSbtabDir.Text = dlg.SelectedPath;

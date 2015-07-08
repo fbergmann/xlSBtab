@@ -1,11 +1,11 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.Office.Interop.Excel;
 
-namespace ExcelAddIn1
+namespace xlSBtab
 {
   public class SBtabModel
   {
@@ -153,7 +153,7 @@ namespace ExcelAddIn1
           {
             string name = ((string)firstValue).Replace("!", "").Trim();
             builder.AppendFormat("!!SBtab SBtabVersion=\"0.8\" Document=\"{0}\" TableType=\"{1}\" TableName=\"{1}\"{2}",
-              "file", sheet.Name, Environment.NewLine);
+              sheet.Name, name, Environment.NewLine);
             ;
           }
         }
@@ -240,6 +240,41 @@ namespace ExcelAddIn1
 
       File.Move(sbmlFile, fileName);
       return true;
+    }
+
+    public static string Validate(Worksheet sheet)
+    {
+      var dir = SBtabSettings.Instance.SBtabDir;
+      var sbTab = ToSBtab(sheet);
+      string tsvFileName = Path.Combine(dir, "out.tsv");
+      string reportFile = Path.Combine(dir, "validate.txt");
+
+      SaveDelete(tsvFileName);
+      SaveDelete(reportFile);
+
+      File.WriteAllText(tsvFileName, sbTab);
+
+      var builder = new StringBuilder();
+      builder.AppendFormat("\"{0}\" ", Path.Combine(dir, "validate.py"));
+      builder.AppendFormat("\"{0}\" ", tsvFileName);
+
+      var info = new ProcessStartInfo
+      {
+        FileName = SBtabSettings.Instance.PythonInterpreter,
+        WorkingDirectory = dir,
+        Arguments = builder.ToString(),
+        CreateNoWindow = true,
+        UseShellExecute = false
+      };
+
+      Process.Start(info).WaitForExit();
+
+      if (!File.Exists(reportFile))
+      {
+        return "Validation failed ... ";
+      }
+
+      return File.ReadAllText(reportFile); //.Replace("\n", Environment.NewLine);
     }
   }
 }

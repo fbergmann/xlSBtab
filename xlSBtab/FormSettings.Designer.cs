@@ -1,4 +1,4 @@
-﻿namespace ExcelAddIn1
+﻿namespace xlSBtab
 {
   partial class FormSettings
   {

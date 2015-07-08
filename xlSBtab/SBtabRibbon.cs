@@ -1,15 +1,8 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools.Ribbon;
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
-using Excel = Microsoft.Office.Interop.Excel;
-
-namespace ExcelAddIn1
+namespace xlSBtab
 {
   public partial class SBtabRibbon
   {
@@ -22,7 +15,8 @@ namespace ExcelAddIn1
 
     private void OnValidateClick(object sender, RibbonControlEventArgs e)
     {
-      MessageBox.Show("Validate Document");
+      Worksheet sheet = ((Worksheet)e.Control.Context.Application.ActiveSheet);
+      MessageBox.Show(SBtabModel.Validate(sheet), "Validation Report", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     
@@ -34,6 +28,8 @@ namespace ExcelAddIn1
         if (dlg.ShowDialog() == DialogResult.OK)
         {
           Worksheet sheet = ((Worksheet)e.Control.Context.Application.ActiveSheet);
+          bool isEmpty = sheet.UsedRange.Address == "$A$1" && sheet.Range["A1"].Value == null;          
+          if (isEmpty  || MessageBox.Show("Warning, all content in this sheet will be replaced with the loaded file. Do you want to continue?", "Replace all content of this sheet?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
           SBtabModel.LoadFile(dlg.FileName, sheet);
         }
       }

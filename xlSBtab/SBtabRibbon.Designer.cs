@@ -1,4 +1,4 @@
-﻿namespace ExcelAddIn1
+﻿namespace xlSBtab
 {
   partial class SBtabRibbon : Microsoft.Office.Tools.Ribbon.RibbonBase
   {
@@ -63,6 +63,9 @@
       // 
       this.cmdImportSBML.Label = "Import SBML";
       this.cmdImportSBML.Name = "cmdImportSBML";
+      this.cmdImportSBML.OfficeImageId = "FileOpen";
+      this.cmdImportSBML.ScreenTip = "Import SBML";
+      this.cmdImportSBML.ShowImage = true;
       this.cmdImportSBML.SuperTip = "Imports an SBML model and translates it to SBtab.";
       this.cmdImportSBML.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.OnImportSBMLClick);
       // 
@@ -70,18 +73,26 @@
       // 
       this.cmdExport.Label = "Export SBML";
       this.cmdExport.Name = "cmdExport";
+      this.cmdExport.OfficeImageId = "FileSave";
+      this.cmdExport.ScreenTip = "Export SBML";
+      this.cmdExport.ShowImage = true;
+      this.cmdExport.SuperTip = "Exports the current set of tables to SBML L2V4";
       this.cmdExport.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.OnExportSBMLClick);
       // 
       // cmdValidate
       // 
       this.cmdValidate.Label = "Validate";
       this.cmdValidate.Name = "cmdValidate";
+      this.cmdValidate.ScreenTip = "Validate";
+      this.cmdValidate.SuperTip = "Checks whether the tables contain the correct headers. ";
       this.cmdValidate.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.OnValidateClick);
       // 
       // cmdSettings
       // 
       this.cmdSettings.Label = "Settings";
       this.cmdSettings.Name = "cmdSettings";
+      this.cmdSettings.ScreenTip = "Settings";
+      this.cmdSettings.SuperTip = "Specify Python Interpreter / SBtab dir";
       this.cmdSettings.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.OnSettingsClick);
       // 
       // SBtabRibbon

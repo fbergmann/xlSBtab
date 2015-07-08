@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-namespace ExcelAddIn1
+namespace xlSBtab
 {
   [Serializable]
   public class SBtabSettings

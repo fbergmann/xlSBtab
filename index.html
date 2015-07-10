@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Xlsbtab by fbergmann</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Xlsbtab</h1>
+          <h2>SBtab Excel 2013 Add-In</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/fbergmann/xlSBtab/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/fbergmann/xlSBtab/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/fbergmann/xlSBtab" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h2>
+<a id="xlsbtab---an-sbtab-excel-2013-add-in" class="anchor" href="#xlsbtab---an-sbtab-excel-2013-add-in" aria-hidden="true"><span class="octicon octicon-link"></span></a>xlSBtab - an SBtab Excel 2013 Add-in</h2>
+
+<p>This project hosts a basic Excel Plugin, for opening an <a href="http://sbml.org">SBML</a> file within Excel and have it be converted to the SBtab format. Alternatively a file edited in the <a href="http://sbtab.net/">SBtab</a> format can be exported as SBML file. </p>
+
+<h3>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<p>For the program to work, you will need to have the following installed: </p>
+
+<ul>
+<li>a version of <a href="http://python.org">python 2.x</a>
+</li>
+<li>the <a href="http://sbml.org/Software/libSBML">libSBML python bindings</a> for that python version</li>
+<li>Excel 2013 to run the plugin</li>
+<li>a checkout of the <a href="https://github.com/derHahn/SBtab">SBtab repository</a>
+</li>
+</ul>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>After you installed the plugin, you will find a new tab called 'SBtab' in the Add-ins ribbon menu. On that tab, click settings to verify the python path, and the SBtab location. </p>
+
+<p>The add in has four options: </p>
+
+<p><img src="https://raw.githubusercontent.com/fbergmann/xlSBtab/master/images/addin_options.png" alt="SBTab options"></p>
+
+<ul>
+<li>
+<strong>Import SBML</strong>: imports an SBML file and replaces the contents of the current sheet with SBtab tables representing that file.</li>
+<li>
+<strong>Export SBML</strong>: translates the tables of the current sheet back into an SBML file. </li>
+<li>
+<strong>Validate</strong>: currently ensures only that the tables have the expected headers. It does not yet validate the entries in the table. </li>
+<li>
+<strong>Settings</strong>: specify the path to the python interpreter, and the SBtab script directory. </li>
+</ul>
+
+<p>Once a model is imported it will be displayed like in the example below (here BioModel 10 was imported): </p>
+
+<p><img src="https://raw.githubusercontent.com/fbergmann/xlSBtab/master/images/screenshot.png" alt="SBtab of BioModel 10"></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>This project is open source and freely available under the <a href="http://opensource.org/licenses/BSD-2-Clause">Simplified BSD</a> license. Should that license not meet your needs, please contact me. </p>
+
+<p>Copyright (c) 2015, Frank T. Bergmann<br>
+All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met: </p>
+
+<ol>
+<li>Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer. </li>
+<li>Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.<br>
+</li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+        </section>
+
+        <footer>
+          Xlsbtab is maintained by <a href="https://github.com/fbergmann">fbergmann</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>

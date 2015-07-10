@@ -12,6 +12,13 @@ For the program to work, you will need to have the following installed:
 ### Installation
 After you installed the plugin, you will find a new tab called 'SBtab' in the Add-ins ribbon menu. On that tab, click settings to verify the python path, and the SBtab location. 
 
+The add in has four options: 
+
+* **Import SBML**: imports an SBML file and replaces the contents of the current sheet with SBtab tables representing that file.
+* **Export SBML**: translates the tables of the current sheet back into an SBML file. 
+* **Validate**: currently ensures only that the tables have the expected headers. It does not yet validate the entries in the table. 
+* **Settings**: specify the path to the python interpreter, and the SBtab script directory. 
+
 ## License
 
 This project is open source and freely available under the [Simplified BSD](http://opensource.org/licenses/BSD-2-Clause) license. Should that license not meet your needs, please contact me. 

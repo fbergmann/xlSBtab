@@ -3,4 +3,7 @@
 /xlSBtab/obj/Release
 /xlSBtab/bin/Release
 
+staging
+
 *.suo
+*.exe

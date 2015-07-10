@@ -9,6 +9,19 @@ namespace xlSBtab
 {
   public class SBtabModel
   {
+    private static string _tempDir;
+    public static string TempDir
+    {
+      get {  if (string.IsNullOrWhiteSpace(_tempDir))
+      {
+        _tempDir = Path.Combine(Environment.GetEnvironmentVariable("TEMP"), "xlsbtab");
+      }
+        return _tempDir;
+      }
+      set { _tempDir = value; }
+    }
+
+
     public static string GetExcelPos(int startRow, int index)
     {
       return ((char)('A' + index)).ToString() + (startRow + 1).ToString();
@@ -93,11 +106,16 @@ namespace xlSBtab
     {
       var dir = SBtabSettings.Instance.SBtabDir;
 
-      RemoveExistingTsvFiles(dir);
+      if (!Directory.Exists(TempDir))
+        Directory.CreateDirectory(TempDir);
 
+      RemoveExistingTsvFiles(TempDir);
+
+      
       var builder = new StringBuilder();
       builder.AppendFormat("\"{0}\" ", Path.Combine(dir, "convert.py"));
       builder.AppendFormat("\"{0}\" ", fileName);
+      builder.AppendFormat("\"{0}\" ", TempDir);
 
       var info = new ProcessStartInfo
       {
@@ -113,7 +131,7 @@ namespace xlSBtab
       sheet.Name = Path.GetFileNameWithoutExtension(fileName);
       sheet.Cells.ClearContents();
 
-      var files = Directory.GetFiles(dir, "*.tsv", SearchOption.TopDirectoryOnly);
+      var files = Directory.GetFiles(TempDir, "*.tsv", SearchOption.TopDirectoryOnly);
       int startRow = 0;
       foreach (var file in files)
       {
@@ -208,17 +226,22 @@ namespace xlSBtab
     {
       var dir = SBtabSettings.Instance.SBtabDir;
       var sbTab = ToSBtab(sheet);
-      string tsvFileName = Path.Combine(dir, "out.tsv");
-      string sbmlFile = Path.Combine(dir, "new_sbml.xml");
+      string tsvFileName = Path.Combine(TempDir, "out.tsv");
+      string sbmlFile = Path.Combine(TempDir, "new_sbml.xml");
 
       SaveDelete(tsvFileName);
       SaveDelete(sbmlFile);
+
+      if (!Directory.Exists(TempDir))
+        Directory.CreateDirectory(TempDir);
+
 
       File.WriteAllText(tsvFileName, sbTab);
 
       var builder = new StringBuilder();
       builder.AppendFormat("\"{0}\" ", Path.Combine(dir, "toSBML.py"));
       builder.AppendFormat("\"{0}\" ", tsvFileName);
+      builder.AppendFormat("\"{0}\" ", sbmlFile);
 
       var info = new ProcessStartInfo
       {
@@ -246,17 +269,22 @@ namespace xlSBtab
     {
       var dir = SBtabSettings.Instance.SBtabDir;
       var sbTab = ToSBtab(sheet);
-      string tsvFileName = Path.Combine(dir, "out.tsv");
-      string reportFile = Path.Combine(dir, "validate.txt");
+      string tsvFileName = Path.Combine(TempDir, "out.tsv");
+      string reportFile = Path.Combine(TempDir, "validate.txt");
 
       SaveDelete(tsvFileName);
       SaveDelete(reportFile);
+
+      if (!Directory.Exists(TempDir))
+        Directory.CreateDirectory(TempDir);
+
 
       File.WriteAllText(tsvFileName, sbTab);
 
       var builder = new StringBuilder();
       builder.AppendFormat("\"{0}\" ", Path.Combine(dir, "validate.py"));
       builder.AppendFormat("\"{0}\" ", tsvFileName);
+      builder.AppendFormat("\"{0}\" ", reportFile);
 
       var info = new ProcessStartInfo
       {
@@ -274,7 +302,7 @@ namespace xlSBtab
         return "Validation failed ... ";
       }
 
-      return File.ReadAllText(reportFile); //.Replace("\n", Environment.NewLine);
+      return File.ReadAllText(reportFile); 
     }
   }
 }

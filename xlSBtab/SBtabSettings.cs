@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using Microsoft.Win32;
 
 namespace xlSBtab
 {
@@ -36,7 +37,11 @@ namespace xlSBtab
       var instance = FromXmlFile(SettingsFile);
       if (instance == null)
       {
-        var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        //var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+        var dir = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\Software\xlSBtab", "Location",
+          Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "xlSBtab"));
+
         var master = dir == null ? "" : Path.Combine(dir, "default_config.xml");
         if (File.Exists(master))
           instance = FromXmlFile(master);

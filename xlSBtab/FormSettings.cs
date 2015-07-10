@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace xlSBtab
@@ -26,7 +27,8 @@ namespace xlSBtab
 
     private void OnBrowseSBtabDirClick(object sender, EventArgs e)
     {
-      using (var dlg = new FolderBrowserDialog { Description = "Select SBtab script dir", SelectedPath = txtPython.Text})
+      var root = txtSbtabDir.Text;
+      using (var dlg = new FolderBrowserDialog { Description = "Select SBtab script dir", SelectedPath = root})
       {
         if (dlg.ShowDialog() == DialogResult.OK)
           txtSbtabDir.Text = dlg.SelectedPath;
@@ -35,7 +37,11 @@ namespace xlSBtab
 
     private void OnBrowsePythonClick(object sender, EventArgs e)
     {
-      using (var dlg = new OpenFileDialog { Title = "Select Python interpreter", Filter = "Executable files|*.exe;*.bat;*.cmd|All files|*.*", FileName = txtPython.Text})
+      var dir = Path.GetDirectoryName(txtPython.Text);
+      var name = Path.GetFileName(txtPython.Text);
+      using (var dlg = new OpenFileDialog { Title = "Select Python interpreter", 
+        Filter = "Executable files|*.exe;*.bat;*.cmd|All files|*.*", 
+        FileName = name, InitialDirectory = dir})
       {
         if (dlg.ShowDialog() == DialogResult.OK)
           txtPython.Text = dlg.FileName;

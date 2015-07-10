@@ -1,4 +1,4 @@
-## xlSBtab
+## xlSBtab - an SBtab Excel 2013 Add-in 
 This project hosts a basic Excel Plugin, for opening an [SBML](http://sbml.org) file within Excel and have it be converted to the SBtab format. Alternatively a file edited in the [SBtab](http://sbtab.net/) format can be exported as SBML file. 
 
 ### Dependencies
@@ -14,10 +14,16 @@ After you installed the plugin, you will find a new tab called 'SBtab' in the Ad
 
 The add in has four options: 
 
+![SBTab options](https://raw.githubusercontent.com/fbergmann/xlSBtab/master/images/addin_options.png)
+
 * **Import SBML**: imports an SBML file and replaces the contents of the current sheet with SBtab tables representing that file.
 * **Export SBML**: translates the tables of the current sheet back into an SBML file. 
 * **Validate**: currently ensures only that the tables have the expected headers. It does not yet validate the entries in the table. 
 * **Settings**: specify the path to the python interpreter, and the SBtab script directory. 
+
+Once a model is imported it will be displayed like in the example below (here BioModel 10 was imported): 
+
+![SBtab of BioModel 10](https://raw.githubusercontent.com/fbergmann/xlSBtab/master/images/screenshot.png)
 
 ## License
 

@@ -2,10 +2,10 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "xlSBtab"
-!define PRODUCT_VERSION "1.0"
+!define PRODUCT_VERSION "1.1"
 !define PRODUCT_PUBLISHER "Frank T. Bergmann"
 !define PRODUCT_WEB_SITE "https://github.com/fbergmann/xlSBtab"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\wininst-6.0.exe"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\xlSBtab.vsto"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
@@ -8383,10 +8383,10 @@ SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
-  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\python\Lib\distutils\command\wininst-6.0.exe"
+  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\xlSBtab.vsto"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\python\Lib\distutils\command\wininst-6.0.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\xlSBtab.vsto"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"

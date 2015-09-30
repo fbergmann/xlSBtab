@@ -75,7 +75,14 @@ Section "MainSection" SEC01
   Push $INSTDIR\default_config.xml      #file to replace in
   Call AdvReplaceInFile                 #call find and replace function
 
-  ; Register plugin
+  ; Register plugin twice, once for 64bit and then for 32bit ...
+  SetRegView 64
+  WriteRegStr HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab" "Description" "xlSBtab"
+  WriteRegStr HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab" "FriendlyName" "xlSBtab"
+  WriteRegStr HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab" "Manifest" "file:///$INSTDIR\xlSBtab.vsto|vstolocal"
+  WriteRegDWORD HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab" "LoadBehavior" 3
+  
+  SetRegView 32
   WriteRegStr HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab" "Description" "xlSBtab"
   WriteRegStr HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab" "FriendlyName" "xlSBtab"
   WriteRegStr HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab" "Manifest" "file:///$INSTDIR\xlSBtab.vsto|vstolocal"
@@ -121,11 +128,16 @@ FunctionEnd
 Section Uninstall
   # Delete Keys
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
-  DeleteRegKey  HKLM "Software\xlSBtab"
-
-  DeleteRegKey HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab"
-
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
+
+  # remove entries from 64 and 32bit registry
+  SetRegView 64
+  DeleteRegKey  HKLM "Software\xlSBtab"
+  DeleteRegKey  HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab"
+  SetRegView 32
+  DeleteRegKey  HKLM "Software\xlSBtab"
+  DeleteRegKey  HKLM "Software\Microsoft\Office\Excel\Addins\xlSBtab"
+
 
 
   # delete files

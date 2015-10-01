@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 !define PRODUCT_NAME "xlSBtab"
-!define PRODUCT_VERSION "1.2"
+!define PRODUCT_VERSION "1.3"
 !define PRODUCT_PUBLISHER "Frank T. Bergmann"
 !define PRODUCT_WEB_SITE "https://github.com/fbergmann/xlSBtab"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\xlSBtab.vsto"
@@ -102,7 +102,7 @@ SectionEnd
 # Install SBtab
 #
 # --------------------------------------------------------------------------
-!include "NSIS_sbtab.nsh"
+!include "NSIS_sbtab_final2.nsh"
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
